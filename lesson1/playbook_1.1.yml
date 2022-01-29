@@ -1,0 +1,25 @@
+---
+- name: lesson1
+  hosts: nodes
+  tasks:
+  - name: check is install httpd on nodes
+    yum:
+      name: httpd
+      state: latest
+  - name: enabled httpd
+    systemd:
+      name: httpd
+      state: started
+  - name: check is created file index.html with this text 'Welcome to my web server'
+    copy:
+      content: 'Welcome to my web server'
+      dest: '/var/www/html/index.html'
+      owner: apache
+      group: apache
+      mode: 0644
+  - name: check is open ports for httpd
+    firewalld:
+      service: https
+      permanent: yes
+      state: enabled    
+...

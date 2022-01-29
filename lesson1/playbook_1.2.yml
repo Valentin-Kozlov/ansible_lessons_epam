@@ -1,0 +1,22 @@
+---
+- name: lesson1.2
+  hosts: nodes
+  tasks:
+  - name: check is closed ports for httpd
+    firewalld:
+      service: https
+      permanent: yes
+      state: disabled
+  - name: disabled httpd
+    systemd:
+      name: httpd
+      state: stopped
+  - name: check is deleted file index.html with this text 'Welcome to my web server'
+    file:
+      path: '/var/www/html/index.html'
+      state: absent  
+  - name: check is uninstalled httpd on nodes
+    yum:
+      name: httpd
+      state: absent  
+...

@@ -1,0 +1,13 @@
+---
+- name: lesson1.3
+  hosts: nodes
+  tasks:
+  - name: string validation in GRUB file [net.ifnames=0 biosdevname=0]
+    lineinfile:
+      path: '/etc/default/grub'
+      regexp: '(\W|^)net.ifnames=0\s{0,3}biosdevname=0{0,1}(\W|$)'
+      line: GRUB_CMDLINE_LINUX="no_timer_check console=tty0 console=ttyS0,115200n8 net.ifnames=0 biosdevname=0 elevator=noop"
+  - name: shell command for grub
+    shell:
+      cmd: grub2-mkconfig
+...
