@@ -11,6 +11,7 @@
     systemd:
       name: httpd
       state: stopped
+      enabled: no
   - name: check is deleted file index.html with this text 'Welcome to my web server'
     file:
       path: '/var/www/html/index.html'

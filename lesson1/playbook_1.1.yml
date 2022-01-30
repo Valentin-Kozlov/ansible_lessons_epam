@@ -10,6 +10,7 @@
     systemd:
       name: httpd
       state: started
+      enabled: yes
   - name: check is created file index.html with this text 'Welcome to my web server'
     copy:
       content: 'Welcome to my web server'
@@ -19,7 +20,7 @@
       mode: 0644
   - name: check is open ports for httpd
     firewalld:
-      service: https
+      service: http
       permanent: yes
       state: enabled    
 ...
