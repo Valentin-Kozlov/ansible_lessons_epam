@@ -1,2 +1,55 @@
 ---
 # tasks file for deploy_ftp
+- name: Install vsftpd
+  yum:
+    name: vsftpd, policycoreutils-python-utils
+    state: latest
+
+- name: Enabled vsftpd
+  systemd:
+    name: vsftpd
+    state: started
+    enabled: yes
+
+- name: Configure vsftpd
+  template:
+    backup: yes
+    dest: '{{ dest_conf }}/vsftpd.conf'
+    src: vsftpd.j2
+  notify:
+    - Restart vsftpd
+
+- name: Configure /var/ftp/pub/upload
+  file:
+    path: '{{ dest_ftp_upload }}'
+    owner: ftp
+    group: ftp
+    mode: 0755
+    state: directory
+
+- name: Configure firewall for vsftpd 20-21
+  firewalld:
+    port: '{{ ftp_port_file }}-{{ ftp_port_command }}/tcp'
+    permanent: yes
+    state: enabled
+
+- name: Configure firewall for passive ports vsftpd
+  firewalld:
+    port: '{{ passive_min_port }}-{{ passive_max_port }}/tcp'
+    permanent: yes
+    state: enabled
+  notify:
+    - Reload firewall
+
+- name: Configure SeLinux allow_ftpd_anon_write
+  seboolean:
+    name: allow_ftpd_anon_write
+    state: yes
+    persistent: yes
+
+- name: Configure SeLinux ftpd_full_access
+  seboolean:
+    name: ftpd_full_access
+    state: yes
+    persistent: yes
+

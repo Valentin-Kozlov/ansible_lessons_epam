@@ -1,2 +1,6 @@
 ---
 # vars file for deploy_ftp
+ftp_port_file: 20
+ftp_port_command: 21
+passive_min_port: 40000
+passive_max_port: 45000

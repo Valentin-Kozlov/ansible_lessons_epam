@@ -1,2 +1,5 @@
 ---
 # defaults file for deploy_ftp
+dest_conf: /etc/vsftpd/
+dest_ftp_upload: /var/ftp/pub/upload
+dest_ftp_pub: /var/ftp/pub

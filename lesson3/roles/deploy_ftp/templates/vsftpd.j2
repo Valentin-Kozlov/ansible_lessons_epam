@@ -1,0 +1,13 @@
+listen=YES
+anonymous_enable=YES
+write_enable=YES
+anon_upload_enable=YES
+anon_mkdir_write_enable=YES
+dirmessage_enable=YES
+xferlog_enable=YES
+connect_from_port_20=YES
+no_anon_password=YES
+xferlog_file=/var/log/vsftpd.log
+pasv_min_port={{passive_min_port}}
+pasv_max_port={{passive_max_port}}
+anon_root={{dest_ftp_pub}}

@@ -1,2 +1,11 @@
 ---
 # handlers file for deploy_ftp
+- name: Restart vsftpd
+  systemd:
+    name: vsftpd
+    state: restarted
+
+- name: Reload firewall
+  systemd:
+    name: firewalld
+    state: reloaded
