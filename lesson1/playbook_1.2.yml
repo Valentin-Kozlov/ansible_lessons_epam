@@ -4,7 +4,7 @@
   tasks:
   - name: check is closed ports for httpd
     firewalld:
-      service: https
+      service: http
       permanent: yes
       state: disabled
   - name: disabled httpd
