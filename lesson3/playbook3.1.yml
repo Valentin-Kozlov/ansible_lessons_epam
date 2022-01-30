@@ -1,0 +1,6 @@
+---
+- name: lesson3.1
+  hosts: nodes
+
+  roles:
+    - deploy_apache

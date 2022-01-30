@@ -1,0 +1,3 @@
+---
+# defaults file for deploy_apache_centos
+dest_index: /var/www/html

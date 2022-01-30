@@ -1,0 +1,13 @@
+---
+# handlers file for deploy_apache_centos
+- name: Restart Apache CentOS
+  systemd:
+    name: httpd
+    state: restarted
+  when: ansible_distribution == 'CentOS'
+
+- name: Restart Apache Debian
+  systemd:
+    name: apache2
+    state: restarted
+  when: ansible_distribution == 'Debian'
