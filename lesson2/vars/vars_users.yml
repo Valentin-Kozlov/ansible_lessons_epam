@@ -1,0 +1,13 @@
+users:
+  Alice:
+    username: Alice
+    email: alece@example.com
+    password: Alice
+  Bob:
+    username: Bob
+    email: bob@example.com
+    password: Bob
+  Carol:
+    username: Carol
+    email: carol@example.com
+    password: Carol

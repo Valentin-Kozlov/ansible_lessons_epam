@@ -1,0 +1,16 @@
+---
+- name: lesson2.1
+  hosts: nodes
+  vars_files:
+    - vars/vars_users.yml
+  tasks:
+  - name: create users on nodes
+    user: 
+      name: '{{ item.key }}'
+      password: "{{ item.value.password | password_hash('sha512') }}"
+      update_password: on_create
+      comment: '{{ item.value.email }}'
+      create_home: yes
+      shell: /bin/bash
+    with_dict: '{{ users }}'    
+...
