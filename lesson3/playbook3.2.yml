@@ -1,6 +1,6 @@
 ---
 - name: lesson3.2
-  hosts: node2.example.com
+  hosts: nodes
 
   roles:
     - deploy_ftp
